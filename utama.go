@@ -3,8 +3,11 @@ package main
 import (
 	"log"
 	"modul/config"
+	"modul/controllers"
 	"modul/models"
+	"net/http"
 
+	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
 
@@ -20,5 +23,17 @@ func init() {
 }
 
 func main() {
-	// fmt.Println("Fungsi Utama")
+
+	rute := gin.Default()
+
+	rute.GET("/", func(ctx *gin.Context) {
+		ctx.JSON(http.StatusOK, gin.H{
+			"pesan": "pong",
+		})
+	})
+
+	rute.GET("/index", controllers.AllData)
+
+	rute.Run()
+
 }

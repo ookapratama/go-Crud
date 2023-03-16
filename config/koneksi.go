@@ -29,3 +29,17 @@ func ConnDB() {
 	DB = database
 
 }
+
+func CloseConnDB(database *gorm.DB) {
+	dbSQL, error := database.DB()
+	if error != nil {
+		panic("Gagal koneksi ke Database")
+	}
+	dbSQL.Close()
+}
+
+
+
+
+
+
